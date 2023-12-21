@@ -1,8 +1,8 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { firms, workerImg } from "./Contentlist";
 import "./App.css";
 import "react-tooltip/dist/react-tooltip.css";
-import { Tooltip as ReactTooltip } from "react-tooltip";
+import BotBar from "./components/BotBar";
 import Office from "./components/Office";
 
 function App() {
@@ -96,13 +96,6 @@ function App() {
     setIncome((i) => i - upgradeparam.upgrcost);
   }
   console.log(upgrade);
-  const handleWorkerClick = (index) => {
-    setWorkerList((prevWorkerList) => {
-      const updatedWorkerList = [...prevWorkerList];
-      updatedWorkerList[index].active = true;
-      return updatedWorkerList;
-    });
-  };
 
   const handleImageClick = (index) => {
     if (clickedIndex === index) {
@@ -453,67 +446,20 @@ function App() {
         </section>
       </div>
       <section className="bot-bar">
-        {workerList.map((worker, index) => {
-          if (worker.active === false && worker.hidden !== true) {
-            return (
-              <div className="avatarholder" key={worker.id}>
-                <img
-                  className="worker-img"
-                  src={workerImg[12].workerImageUrl}
-                  alt={workerImg[12].name}
-                />
-                <button
-                  className="freebutton"
-                  onClick={() => {
-                    if (income >= worker.cost) {
-                      if (worker.extra === "startSearch") {
-                        setKatharinaWork(!katharinaWork);
-                      }
-                      if (worker.extra === "startDevelop") {
-                        setNathanielWork(!nathanielWork);
-                      }
-                      handleWorkerClick(index);
-                      setIncome((i) => i - worker.cost);
-                    }
-                  }}
-                >
-                  {worker.cost}€
-                </button>
-              </div>
-            );
-          } else if (worker.hidden !== true) {
-            return (
-              <img
-                className="worker-img"
-                src={worker.workerImageUrl}
-                alt={worker.name}
-                id={worker.name}
-                data-tooltip-content={worker.name}
-                onClick={() => {
-                  handleImageClick(index);
-                }}
-                style={
-                  selectedImage === worker.name
-                    ? { border: "3px solid red" }
-                    : { border: "1px solid darkolivegreen" }
-                }
-                key={worker.id}
-              />
-            );
-          } else <>""</>;
-        })}
-        <ReactTooltip anchorId="Hassan" />
-        <ReactTooltip anchorId="Marius" />
-        <ReactTooltip anchorId="Katharina" />
-        <ReactTooltip anchorId="Nathaniel" />
-        <ReactTooltip anchorId="Franz" />
-        <ReactTooltip anchorId="Dave" />
-        <ReactTooltip anchorId="Romeo" />
-        <ReactTooltip anchorId="Mike" />
-        <ReactTooltip anchorId="Cornelius" />
-        <ReactTooltip anchorId="Nadia" />
-        <ReactTooltip anchorId="Tony" />
-        <ReactTooltip anchorId="Christopher" />
+        <BotBar
+          workerList={workerList}
+          selectedImage={selectedImage}
+          setselectedImage={setselectedImage}
+          clickedIndex={clickedIndex}
+          setClickedIndex={setClickedIndex}
+          income={income}
+          setIncome={setIncome}
+          setKatharinaWork={setKatharinaWork}
+          katharinaWork={katharinaWork}
+          setWorkerList={setWorkerList}
+          setNathanielWork={setNathanielWork}
+          nathanielWork={setNathanielWork}
+        />
       </section>
     </div>
   );
