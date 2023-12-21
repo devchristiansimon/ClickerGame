@@ -8,7 +8,7 @@ import Office from "./components/Office";
 function App() {
   const [workcount, setworkCount] = useState(0);
   const [findWorkCount, setfindWorkCount] = useState(0);
-  const [income, setIncome] = useState(50000);
+  const [income, setIncome] = useState(0);
   const [OrderIncome, setOrderIncome] = useState(200);
   const [orders, setOrders] = useState([]);
   const [selectedImage, setselectedImage] = useState(null);
@@ -95,7 +95,6 @@ function App() {
 
     setIncome((i) => i - upgradeparam.upgrcost);
   }
-  console.log(upgrade);
 
   const handleImageClick = (index) => {
     if (clickedIndex === index) {
