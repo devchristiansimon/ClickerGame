@@ -1,0 +1,193 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+ul {
+  padding: 5px;
+}
+li {
+  list-style-type: none;
+}
+.App {
+  background: darkslategray;
+}
+.centerscreen {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 75vh;
+  flex-wrap: nowrap;
+}
+.left-bar {
+  width: 25vw;
+  border-right: 2px solid black;
+  display: flex;
+  flex-flow: column nowrap;
+}
+.income {
+  height: 25%;
+  font-size: larger;
+  margin-top: 20px;
+}
+.orderlist {
+  height: 50%;
+  padding: 0;
+}
+.action-button-field {
+  height: 20%;
+  display: flex;
+  flex-flow: column nowrap;
+  overflow: hidden;
+  gap: 10px;
+  align-items: center;
+}
+
+.mid-bar {
+  width: 50vw;
+}
+.right-bar {
+  width: 25vw;
+  border-left: 2px solid black;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.office-img {
+  width: 20vw;
+  height: auto;
+  margin-top: 20px;
+}
+
+.bot-bar {
+  height: 25vh;
+  border-top: 2px solid black;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+}
+.worker-img {
+  width: 8vw;
+  border: 1px solid darkolivegreen;
+}
+
+.bar {
+  background: #b6b6b6;
+  width: 90%;
+  height: 30px;
+  margin: 10px auto;
+  border-radius: 50px;
+  overflow: hidden;
+}
+.fill {
+  height: 100%;
+  background: linear-gradient(45deg, #f00144, #fd5900);
+}
+.fillwork {
+  height: 100%;
+  background: linear-gradient(45deg, hsl(205, 99%, 47%), hsl(232, 100%, 50%));
+}
+.counter {
+  font-size: 20px;
+  font-family: monospace;
+  font-weight: 800;
+  color: black;
+  padding: 5px;
+  z-index: 1;
+}
+
+.rulesScreen {
+  display: flex;
+  margin: 10% 20%;
+  justify-content: center;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 20px;
+}
+.avatarholder {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+.freebutton {
+  z-index: 1;
+  width: 80px;
+  height: 20px;
+  background-color: blue;
+}
+.fire {
+  background-color: red;
+  font-weight: bold;
+}
+.whoimg {
+  max-width: 100%;
+  overflow: hidden;
+}
+.findwork-Button {
+  width: 80%;
+  background: blue;
+  color: white;
+}
+.work-Button {
+  width: 80%;
+  background: red;
+  color: white;
+}
+
+.profile {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  gap: 5vw;
+  margin-top: 5vh;
+}
+.profile-stats {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  width: 50%;
+}
+h4 {
+  margin: 0;
+  font-size: large;
+}
+
+.profilpic {
+  width: 50%;
+  overflow: hidden;
+}
+.profilpic img {
+  width: 90%;
+  overflow: hidden;
+}
+.upgradebox {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  border: 1px solid black;
+  width: 80%;
+  padding: 10px;
+}
+
+.upgradebox span {
+  font-size: small;
+}
+
+.next-upgrade {
+  margin-top: 10vh;
+}
+.next-upgrade div {
+  margin-top: 10px;
+}
+.next-upgrade button {
+  margin-top: 10px;
+}
+.description {
+  margin-left: 60px;
+  margin-right: 60px;
+}
