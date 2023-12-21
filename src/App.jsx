@@ -11,32 +11,13 @@ function App() {
   const [income, setIncome] = useState(0);
   const [OrderIncome, setOrderIncome] = useState(200);
   const [orders, setOrders] = useState([]);
+  const [selectedImage, setselectedImage] = useState("welcome");
 
   const [isOffice, setIsOffice] = useState("office1");
 
-  const [hassanActive, setHassanActive] = useState(false);
-  const [mariusActive, setMariusActive] = useState(false);
-  const [katharinaActive, setKatharinaActive] = useState(false);
-  const [nathanielActive, setNathanielActive] = useState(false);
-  const [franzActive, setFranzActive] = useState(false);
-  const [daveActive, setDaveActive] = useState(false);
-  const [romeoActive, setRomeoActive] = useState(false);
-  const [mikeActive, setMikeActive] = useState(false);
-  const [corneliusActive, setCorneliusActive] = useState(false);
-  const [nadiaActive, setNadiaActive] = useState(false);
-  const [tonyActive, setTonyActive] = useState(false);
-  const [christopherActive, setChristopherActive] = useState(false);
-
   const [katharinaWork, setKatharinaWork] = useState(false);
   const [nathanielWork, setNathanielWork] = useState(false);
-  const [franzWork, setFranzWork] = useState(false);
-  const [daveWork, setDaveWork] = useState(false);
-  const [romeoWork, setRomeoWork] = useState(false);
-  const [mikeWork, setMikeWork] = useState(false);
-  const [corneliusWork, setCorneliusWork] = useState(false);
-  const [nadiaWork, setNadiaWork] = useState(false);
-  const [tonyWork, setTonyWork] = useState(false);
-  const [christopherWork, setChristopherWork] = useState(false);
+  const [workerList, setWorkerList] = useState(workerImg);
 
   const [findWorkMultiplier, setFindWorkMultiplier] = useState(1);
   const [workMultiplier, setWorkMultiplier] = useState(1);
@@ -84,6 +65,22 @@ function App() {
     upgr40: false,
   });
 
+  const handleWorkerClick = (index) => {
+    setWorkerList((prevWorkerList) => {
+      const updatedWorkerList = [...prevWorkerList];
+      updatedWorkerList[index].active = true;
+      return updatedWorkerList;
+    });
+  };
+
+  const handleImageClick = (imageID) => {
+    if (selectedImage === imageID) {
+      setselectedImage("welcome");
+    } else {
+      setselectedImage(imageID);
+    }
+  };
+
   const maxfirm = firms.length;
   let multiplierForSearch = 1000 / (1 + findWorkMultiplier);
   let multiplierForWork = 1000 / (1 + workMultiplier);
@@ -130,20 +127,6 @@ function App() {
       ...old,
       `${firms[getRandomFirm(maxfirm)]} - ${OrderIncome} €`,
     ]);
-  }
-  function allInactive() {
-    setHassanActive(false);
-    setMariusActive(false);
-    setKatharinaActive(false);
-    setFranzActive(false);
-    setNathanielActive(false);
-    setDaveActive(false);
-    setRomeoActive(false);
-    setMikeActive(false);
-    setCorneliusActive(false);
-    setNadiaActive(false);
-    setTonyActive(false);
-    setChristopherActive(false);
   }
 
   return (
@@ -202,41 +185,28 @@ function App() {
           </div>
 
           <div className="center-mid-info">
-            {!hassanActive &&
-              !mariusActive &&
-              !katharinaActive &&
-              !nathanielActive &&
-              !daveActive &&
-              !franzActive &&
-              !mikeActive &&
-              !corneliusActive &&
-              !tonyActive &&
-              !romeoActive &&
-              !nadiaActive &&
-              !christopherActive && (
-                <div className="rulesScreen">
-                  <h2>Willkommen bei der Summer Sunshine GmbH</h2>
-                  <span>
-                    Deine Aufgabe ist es die Firma profitabel zu machen und
-                    viele Umsätze zu generieren. Dabei wirst du Mitarbeiter
-                    einstellen und in immer noblere Büros umziehen
-                  </span>
-                  <span>
-                    Damit dies gelingt musst du Aufträge suchen (Blauer Button),
-                    und diese Aufträge dann bearbeiten (Roter Button). Neue
-                    Mitarbeiter werden deine Aufgaben automatisieren. Du kannst
-                    die Mitarbeiter auf Klick Ihres Profilbildes anwählen und
-                    upgraden
-                  </span>
-                  Ich wünsche dir viel Spaß!
-                  <div>
-                    <i>
-                      *Optimiert für 1920*1080 - Speichern noch nicht möglich
-                    </i>
-                  </div>
+            {selectedImage === "welcome" && (
+              <div className="rulesScreen">
+                <h2>Willkommen bei der Summer Sunshine GmbH</h2>
+                <span>
+                  Deine Aufgabe ist es die Firma profitabel zu machen und viele
+                  Umsätze zu generieren. Dabei wirst du Mitarbeiter einstellen
+                  und in immer noblere Büros umziehen
+                </span>
+                <span>
+                  Damit dies gelingt musst du Aufträge suchen (Blauer Button),
+                  und diese Aufträge dann bearbeiten (Roter Button). Neue
+                  Mitarbeiter werden deine Aufgaben automatisieren. Du kannst
+                  die Mitarbeiter auf Klick Ihres Profilbildes anwählen und
+                  upgraden
+                </span>
+                Ich wünsche dir viel Spaß!
+                <div>
+                  <i>*Optimiert für 1920*1080 - Speichern noch nicht möglich</i>
                 </div>
-              )}
-            {hassanActive === true && (
+              </div>
+            )}
+            {selectedImage === "Hassan" && (
               <div>
                 <h2>
                   <u>Hassan</u>
@@ -376,7 +346,7 @@ function App() {
                 </div>
               </div>
             )}
-            {mariusActive === true && (
+            {selectedImage === "Marius" && (
               <div>
                 <h2>
                   <u>Marius</u>
@@ -518,7 +488,7 @@ function App() {
                 </div>
               </div>
             )}
-            {katharinaActive === true && (
+            {selectedImage === "Katharina" && (
               <div>
                 <h2>
                   <u>Katharina</u>
@@ -639,7 +609,7 @@ function App() {
                 </div>
               </div>
             )}
-            {nathanielActive === true && (
+            {selectedImage === "Nathaniel" && (
               <div>
                 <h2>
                   <u>Nathaniel</u>
@@ -756,7 +726,7 @@ function App() {
                 </div>
               </div>
             )}
-            {franzActive === true && (
+            {selectedImage === "Franz" && (
               <div>
                 <h2>
                   <u>Franz</u>
@@ -875,7 +845,7 @@ function App() {
                 </div>
               </div>
             )}
-            {daveActive === true && (
+            {selectedImage === "Dave" && (
               <div>
                 <h2>
                   <u>Dave</u>
@@ -994,7 +964,7 @@ function App() {
                 </div>
               </div>
             )}
-            {romeoActive === true && (
+            {selectedImage === "Romeo" && (
               <div>
                 <h2>
                   <u>Romeo</u>
@@ -1111,7 +1081,7 @@ function App() {
                 </div>
               </div>
             )}
-            {mikeActive === true && (
+            {selectedImage === "Mike" && (
               <div>
                 <h2>
                   <u>Mike</u>
@@ -1228,7 +1198,7 @@ function App() {
                 </div>
               </div>
             )}
-            {corneliusActive === true && (
+            {selectedImage === "Cornelius" && (
               <div>
                 <h2>
                   <u>Cornelius</u>
@@ -1345,7 +1315,7 @@ function App() {
                 </div>
               </div>
             )}
-            {nadiaActive === true && (
+            {selectedImage === "Nadia" && (
               <div>
                 <h2>
                   <u>Nadia</u>
@@ -1462,7 +1432,7 @@ function App() {
                 </div>
               </div>
             )}
-            {tonyActive === true && (
+            {selectedImage === "Tony" && (
               <div>
                 <h2>
                   <u>Tony</u>
@@ -1579,7 +1549,7 @@ function App() {
                 </div>
               </div>
             )}
-            {christopherActive === true && (
+            {selectedImage === "Christopher" && (
               <div>
                 <h2>
                   <u>Christopher</u>
@@ -1710,416 +1680,55 @@ function App() {
         </section>
       </div>
       <section className="bot-bar">
-        <img
-          className="worker-img"
-          src={workerImg[0].workerImageUrl}
-          alt="Hassan"
-          id="Hassan"
-          data-tooltip-content="Hassan"
-          onClick={() => {
-            allInactive();
-            setHassanActive(!hassanActive);
-          }}
-          style={
-            hassanActive
-              ? { border: "3px solid red" }
-              : { border: "1px solid darkolivegreen" }
-          }
-        />
-        <img
-          className="worker-img"
-          src={workerImg[1].workerImageUrl}
-          alt="Marius"
-          id="Marius"
-          data-tooltip-content="Marius"
-          onClick={() => {
-            allInactive();
-            setMariusActive(!mariusActive);
-          }}
-          style={
-            mariusActive
-              ? { border: "3px solid red" }
-              : { border: "1px solid darkolivegreen" }
-          }
-        />
-        {!katharinaWork ? (
-          <div className="avatarholder">
-            <img
-              className="worker-img"
-              src={workerImg[12].workerImageUrl}
-              alt={workerImg[12].name}
-            />
-            <button
-              className="freebutton"
-              onClick={() => {
-                if (income >= 300) {
-                  setKatharinaWork(!katharinaWork);
-                  setIncome((i) => i - 300);
+        {workerList.map((worker, index) => {
+          if (worker.active === false && worker.hidden !== true) {
+            return (
+              <div className="avatarholder" key={worker.id}>
+                <img
+                  className="worker-img"
+                  src={workerImg[12].workerImageUrl}
+                  alt={workerImg[12].name}
+                />
+                <button
+                  className="freebutton"
+                  onClick={() => {
+                    if (income >= worker.cost) {
+                      if (worker.extra === "startSearch") {
+                        setKatharinaWork(!katharinaWork);
+                      }
+                      if (worker.extra === "startDevelop") {
+                        setNathanielWork(!nathanielWork);
+                      }
+                      handleWorkerClick(index);
+                      setIncome((i) => i - worker.cost);
+                    }
+                  }}
+                >
+                  {worker.cost}€
+                </button>
+              </div>
+            );
+          } else if (worker.hidden !== true) {
+            return (
+              <img
+                className="worker-img"
+                src={worker.workerImageUrl}
+                alt={worker.name}
+                id={worker.name}
+                data-tooltip-content={worker.name}
+                onClick={() => {
+                  handleImageClick(worker.name);
+                }}
+                style={
+                  selectedImage === worker.name
+                    ? { border: "3px solid red" }
+                    : { border: "1px solid darkolivegreen" }
                 }
-              }}
-            >
-              300€
-            </button>
-          </div>
-        ) : (
-          <img
-            className="worker-img"
-            src={workerImg[2].workerImageUrl}
-            alt="Katharina"
-            id="Katharina"
-            data-tooltip-content="Katharina"
-            onClick={() => {
-              allInactive();
-              setKatharinaActive(!katharinaActive);
-            }}
-            style={
-              katharinaActive
-                ? { border: "3px solid red" }
-                : { border: "1px solid darkolivegreen" }
-            }
-          />
-        )}
-        {!nathanielWork ? (
-          <div className="avatarholder">
-            <img
-              className="worker-img"
-              src={workerImg[12].workerImageUrl}
-              alt="Who"
-            />
-            <button
-              className="freebutton"
-              onClick={() => {
-                if (income >= 100) {
-                  setNathanielWork(!nathanielWork);
-                  setIncome((i) => i - 1000);
-                }
-              }}
-            >
-              1000€
-            </button>
-          </div>
-        ) : (
-          <img
-            className="worker-img"
-            src={workerImg[3].workerImageUrl}
-            alt="Nathaniel"
-            id="Nathaniel"
-            data-tooltip-content="Nathaniel"
-            onClick={() => {
-              allInactive();
-              setNathanielActive(!nathanielActive);
-            }}
-            style={
-              nathanielActive
-                ? { border: "3px solid red" }
-                : { border: "1px solid darkolivegreen" }
-            }
-          />
-        )}
-        {!franzWork ? (
-          <div className="avatarholder">
-            <img
-              className="worker-img"
-              src={workerImg[12].workerImageUrl}
-              alt="Who"
-            />
-            <button
-              className="freebutton"
-              onClick={() => {
-                if (income >= 3000) {
-                  setFranzWork(!franzWork);
-                  setWorkMultiplier(workMultiplier + 1);
-                  setIncome((i) => i - 3000);
-                }
-              }}
-            >
-              3000€
-            </button>
-          </div>
-        ) : (
-          <img
-            className="worker-img"
-            src={workerImg[4].workerImageUrl}
-            alt="Franz"
-            id="Franz"
-            data-tooltip-content="Franz"
-            onClick={() => {
-              allInactive();
-              setFranzActive(!franzActive);
-            }}
-            style={
-              franzActive
-                ? { border: "3px solid red" }
-                : { border: "1px solid darkolivegreen" }
-            }
-          />
-        )}
-        {!daveWork ? (
-          <div className="avatarholder">
-            <img
-              className="worker-img"
-              src={workerImg[12].workerImageUrl}
-              alt="Who"
-            />
-            <button
-              className="freebutton"
-              onClick={() => {
-                if (income >= 5000) {
-                  setDaveWork(!daveWork);
-                  setWorkMultiplier(workMultiplier + 1);
-                  setIncome((i) => i - 5000);
-                }
-              }}
-            >
-              5000€
-            </button>
-          </div>
-        ) : (
-          <img
-            className="worker-img"
-            src={workerImg[5].workerImageUrl}
-            alt="Dave"
-            id="Dave"
-            data-tooltip-content="Dave"
-            onClick={() => {
-              allInactive();
-              setDaveActive(!daveActive);
-            }}
-            style={
-              daveActive
-                ? { border: "3px solid red" }
-                : { border: "1px solid darkolivegreen" }
-            }
-          />
-        )}
-        {!romeoWork ? (
-          <div className="avatarholder">
-            <img
-              className="worker-img"
-              src={workerImg[12].workerImageUrl}
-              alt="Who"
-            />
-            <button
-              className="freebutton"
-              onClick={() => {
-                if (income >= 8000) {
-                  setRomeoWork(!romeoWork);
-                  setWorkMultiplier(workMultiplier + 1);
-                  setIncome((i) => i - 8000);
-                }
-              }}
-            >
-              8000€
-            </button>
-          </div>
-        ) : (
-          <img
-            className="worker-img"
-            src={workerImg[6].workerImageUrl}
-            alt="Romeo"
-            id="Romeo"
-            data-tooltip-content="Romeo"
-            onClick={() => {
-              allInactive();
-              setRomeoActive(!romeoActive);
-            }}
-            style={
-              romeoActive
-                ? { border: "3px solid red" }
-                : { border: "1px solid darkolivegreen" }
-            }
-          />
-        )}
-        {!mikeWork ? (
-          <div className="avatarholder">
-            <img
-              className="worker-img"
-              src={workerImg[12].workerImageUrl}
-              alt="Who"
-            />
-            <button
-              className="freebutton"
-              onClick={() => {
-                if (income >= 10000) {
-                  setMikeWork(!mikeWork);
-                  setWorkMultiplier(workMultiplier + 1);
-                  setIncome((i) => i - 10000);
-                }
-              }}
-            >
-              10k€
-            </button>
-          </div>
-        ) : (
-          <img
-            className="worker-img"
-            src={workerImg[7].workerImageUrl}
-            alt="Mike"
-            id="Mike"
-            data-tooltip-content="Mike"
-            onClick={() => {
-              allInactive();
-              setMikeActive(!mikeActive);
-            }}
-            style={
-              mikeActive
-                ? { border: "3px solid red" }
-                : { border: "1px solid darkolivegreen" }
-            }
-          />
-        )}
-        {!corneliusWork ? (
-          <div className="avatarholder">
-            <img
-              className="worker-img"
-              src={workerImg[12].workerImageUrl}
-              alt="Who"
-            />
-            <button
-              className="freebutton"
-              onClick={() => {
-                if (income >= 14000) {
-                  setCorneliusWork(!corneliusWork);
-                  setWorkMultiplier(workMultiplier + 1);
-                  setIncome((i) => i - 14000);
-                }
-              }}
-            >
-              14k€
-            </button>
-          </div>
-        ) : (
-          <img
-            className="worker-img"
-            src={workerImg[8].workerImageUrl}
-            alt="Cornelius"
-            id="Cornelius"
-            data-tooltip-content="Cornelius"
-            onClick={() => {
-              allInactive();
-              setCorneliusActive(!corneliusActive);
-            }}
-            style={
-              corneliusActive
-                ? { border: "3px solid red" }
-                : { border: "1px solid darkolivegreen" }
-            }
-          />
-        )}
-        {!nadiaWork ? (
-          <div className="avatarholder">
-            <img
-              className="worker-img"
-              src={workerImg[12].workerImageUrl}
-              alt="Who"
-            />
-            <button
-              className="freebutton"
-              onClick={() => {
-                if (income >= 18000) {
-                  setNadiaWork(!nadiaWork);
-                  setWorkMultiplier(workMultiplier + 2);
-                  setIncome((i) => i - 18000);
-                }
-              }}
-            >
-              18k€
-            </button>
-          </div>
-        ) : (
-          <img
-            className="worker-img"
-            src={workerImg[9].workerImageUrl}
-            alt="Nadia"
-            id="Nadia"
-            data-tooltip-content="Nadia"
-            onClick={() => {
-              allInactive();
-              setNadiaActive(!nadiaActive);
-            }}
-            style={
-              nadiaActive
-                ? { border: "3px solid red" }
-                : { border: "1px solid darkolivegreen" }
-            }
-          />
-        )}
-        {!tonyWork ? (
-          <div className="avatarholder">
-            <img
-              className="worker-img"
-              src={workerImg[12].workerImageUrl}
-              alt="Who"
-            />
-            <button
-              className="freebutton"
-              onClick={() => {
-                if (income >= 22000) {
-                  setTonyWork(!tonyWork);
-                  setWorkMultiplier(workMultiplier + 2);
-                  setIncome((i) => i - 22000);
-                }
-              }}
-            >
-              22k€
-            </button>
-          </div>
-        ) : (
-          <img
-            className="worker-img"
-            src={workerImg[10].workerImageUrl}
-            alt="Tony"
-            id="Tony"
-            data-tooltip-content="Tony"
-            onClick={() => {
-              allInactive();
-              setTonyActive(!tonyActive);
-            }}
-            style={
-              tonyActive
-                ? { border: "3px solid red" }
-                : { border: "1px solid darkolivegreen" }
-            }
-          />
-        )}
-        {!christopherWork ? (
-          <div className="avatarholder">
-            <img
-              className="worker-img"
-              src={workerImg[12].workerImageUrl}
-              alt="Who"
-            />
-            <button
-              className="freebutton"
-              onClick={() => {
-                if (income >= 30000) {
-                  setChristopherWork(!christopherWork);
-                  setWorkMultiplier(workMultiplier + 2);
-                  setIncome((i) => i - 30000);
-                }
-              }}
-            >
-              30k€
-            </button>
-          </div>
-        ) : (
-          <img
-            className="worker-img"
-            src={workerImg[11].workerImageUrl}
-            alt="Christopher"
-            id="Christopher"
-            data-tooltip-content="Christopher"
-            onClick={() => {
-              allInactive();
-              setChristopherActive(!christopherActive);
-            }}
-            style={
-              christopherActive
-                ? { border: "3px solid red" }
-                : { border: "1px solid darkolivegreen" }
-            }
-          />
-        )}
+                key={worker.id}
+              />
+            );
+          } else <>""</>;
+        })}
         <ReactTooltip anchorId="Hassan" />
         <ReactTooltip anchorId="Marius" />
         <ReactTooltip anchorId="Katharina" />
